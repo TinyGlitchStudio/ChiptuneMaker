@@ -1,0 +1,153 @@
+/* Fuente personalizada */
+@font-face {
+    font-family: "VT323";
+    src: url("fonts/VT323-Regular.ttf");
+}
+
+* {
+    -fx-font-family: 'VT323';
+    -fx-font-size: 20px;
+}
+
+/* Botones octavas y volumen */
+
+/* Volumen */
+
+.boxVol .volText{
+    -fx-text-fill: #00ffff;
+}
+
+.boxVol {
+    -fx-background-color: #0d1117;
+    -fx-alignment: center;
+}
+
+.boxVol .button{
+    /* Color letras volumen #00ffff celeste */
+    -fx-text-fill: #00ff00;
+
+}
+
+
+/* Octava */
+
+.boxOct .octText{
+    -fx-text-fill: #00ffff;
+}
+
+.boxOct {
+    -fx-background-color: #0d1117;
+    -fx-alignment: center;
+}
+
+.boxOct .button{
+    /* Color letras octavas #00ff00 verde neón */
+    -fx-text-fill: #00ff00;
+}
+
+Button {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-border-radius: 0;
+    -fx-background-radius: 0;
+    -fx-padding: 5;
+}
+
+
+
+/* ************************************************************************************************************** */
+
+.note-display {
+    -fx-font-size: 24px;
+    -fx-text-fill: #00ff00;
+    -fx-font-weight: bold;
+}
+
+/* *************************************************************************************************************** */
+
+/* Estilos de la tabla */
+
+.custom-table {
+    -fx-background-color: black;
+    -fx-border-color: transparent;
+}
+
+/* Fondo de los encabezados */
+.custom-table .column-header-background {
+    -fx-background-color: black;
+}
+
+.custom-table .column-header .label {
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+}
+
+.custom-table .table-row-cell {
+    -fx-background-color: black;
+}
+
+.custom-table .table-row-cell:selected {
+    -fx-background-color: black !important;
+    -fx-text-fill: white !important;
+}
+
+/* Colores de texto */
+.custom-table .table-cell {
+    -fx-text-fill: white; /* Color blanco por defecto */
+    -fx-alignment: CENTER;
+}
+
+/* Color para columna "Note" */
+.custom-table .col-note {
+    -fx-text-fill: #fdfcfd; /* Blanco */
+}
+
+/* Color para columna "Vol" */
+.custom-table .col-volume {
+    -fx-text-fill: #00bf00; /* Verde */
+}
+
+/* Color para columna "Fx" */
+.custom-table .col-effect {
+    -fx-text-fill: #af00af; /* Morado */
+}
+
+/* Color para columna "Instrument" */
+.custom-table .col-instrument {
+    -fx-text-fill: #00bfbf; /* Turquesa */
+}
+
+
+
+/* ************************************************************************************************************** */
+
+/* Boton de reproducir y eliminar */
+
+/* Reproducir */
+
+.btnPlay {
+    -fx-background-color: #4CAF50;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-padding: 10 20;
+    -fx-border-radius: 5px;
+}
+
+.btnPlay:hover {
+    -fx-background-color: #45a049;
+}
+
+/* Eliminar */
+
+.btnClear {
+    -fx-background-color: #ff0000;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 8 16;
+}
+
+.btnClear:hover {
+    -fx-background-color: #ba4d40;
+}
+
+/* ************************************************************************************************************* */

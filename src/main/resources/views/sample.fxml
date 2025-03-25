@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="mainPane" onKeyPressed="#handleKeyPressed" prefHeight="600" prefWidth="800" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.SoundController">
+
+   <stylesheets>
+      <URL value="@styles.css" />
+   </stylesheets>
+
+   <!-- Current Note Display -->
+   <Label fx:id="CurrentNote" layoutX="20" layoutY="20" />
+
+   <!-- Volume Controls -->
+   <HBox fx:id="Vol" layoutX="395.0" layoutY="132.0" spacing="5" styleClass="boxVol">
+      <Label styleClass="volText" text="Vol" />
+      <Button fx:id="btnVol0" text="0" />
+      <Button fx:id="btnVol1" text="1" />
+      <Button fx:id="btnVol2" text="2" />
+      <Button fx:id="btnVol3" text="3" />
+      <Button fx:id="btnVol4" text="4" />
+      <Button fx:id="btnVol5" text="5" />
+      <Button fx:id="btnVol6" text="6" />
+      <Button fx:id="btnVol7" text="7" />
+   </HBox>
+
+   <!-- Octave Controls -->
+   <HBox fx:id="Oct" layoutX="77.0" layoutY="132.0" spacing="5" styleClass="boxOct">
+      <Label styleClass="octText" text="Oct" />
+      <Button fx:id="btnOct1" text="1" />
+      <Button fx:id="btnOct2" text="2" />
+      <Button fx:id="btnOct3" text="3" />
+      <Button fx:id="btnOct4" text="4" />
+   </HBox>
+
+   <!-- Instrument Controls -->
+   <HBox fx:id="Instruments" layoutX="505.0" layoutY="77.0" prefHeight="43.0" prefWidth="183.0" spacing="5">
+      <Button fx:id="btnSquare" style="-fx-background-color: transparent; -fx-padding: 0;">
+         <graphic>
+            <ImageView fitHeight="23" fitWidth="26">
+               <!-- 81 (Lead Square) -->
+               <Image url="@../images/WaveSquare.png" />
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="btnSawtooth" style="-fx-background-color: transparent; -fx-padding: 0;">
+         <graphic>
+            <ImageView fitHeight="22" fitWidth="32">
+               <!-- 82 (Lead Sawtooth) -->
+               <Image url="@../images/WaveSawtooth.png" />
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="btnCharang" style="-fx-background-color: transparent; -fx-padding: 0;">
+         <graphic>
+            <ImageView fitHeight="28" fitWidth="37">
+               <!-- 85 (Lead Charang) -->
+               <Image url="@../images/LeadCharang.png" />
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="btnVoice" style="-fx-background-color: transparent; -fx-padding: 0;">
+         <graphic>
+            <ImageView fitHeight="28" fitWidth="33">
+               <!-- 86 (Lead Voice) -->
+               <Image url="@../images/LeadVoice.png" />
+            </ImageView>
+         </graphic>
+      </Button>
+      <Button fx:id="btnFxSoundtrack" style="-fx-background-color: transparent; -fx-padding: 0;">
+         <graphic>
+            <ImageView fitHeight="28" fitWidth="26">
+               <!-- 98 (FX Soundtrack) -->
+               <Image url="@../images/FxSoundtrack.png" />
+            </ImageView>
+         </graphic>
+      </Button>
+   </HBox>
+
+   <!-- Track Controls -->
+   <HBox layoutX="20" layoutY="350" spacing="10" />
+
+   <!-- Sequence Table -->
+   <TableView fx:id="sequenceTable" layoutX="147.0" layoutY="242.0" prefHeight="150" prefWidth="506.0" styleClass="custom-table">
+      <columns>
+         <TableColumn fx:id="colNote" prefWidth="100" styleClass="col-note" text="Note" />
+         <TableColumn fx:id="colVolume" prefWidth="100" styleClass="col-volume" text="Vol" />
+         <TableColumn fx:id="colEffect" prefWidth="150" styleClass="col-effect" text="Fx" />
+         <TableColumn fx:id="colInstrument" prefWidth="150" styleClass="col-instrument" text="Instrument" />
+      </columns>
+   </TableView>
+
+   <!-- Action Buttons -->
+   <HBox layoutX="20" layoutY="450" spacing="10" />
+   <ComboBox fx:id="effectSelector" layoutX="505.0" layoutY="14.0" prefHeight="48.0" prefWidth="183.0" />
+   <Button fx:id="btnPlay" layoutX="239.0" layoutY="408.0" styleClass="btnPlay" text="Play" />
+   <Button fx:id="btnClear" layoutX="486.0" layoutY="408.0" styleClass="btnClear" text="Clear" />
+
+</AnchorPane>

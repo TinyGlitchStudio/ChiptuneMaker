@@ -6,7 +6,6 @@ import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-//Respaldado por chatGODpt
 public class InputHandler {
     public List<Sound> getUserSounds() {
         Scanner scanner = new Scanner(System.in);
@@ -17,6 +16,13 @@ public class InputHandler {
 
         while (true) {
             System.out.print("> ");
+
+            // Verifica si hay entrada disponible antes de leer
+            if (!scanner.hasNextLine()) {
+                System.out.println("No hay entrada disponible. Cerrando...");
+                break;
+            }
+
             String input = scanner.nextLine().trim();
 
             if (input.equalsIgnoreCase("exit")) {
@@ -31,7 +37,7 @@ public class InputHandler {
             }
         }
 
-        scanner.close();
+        // No cerramos el Scanner para evitar problemas con System.in
         return sounds;
     }
 
@@ -59,6 +65,6 @@ public class InputHandler {
         int octave = Integer.parseInt(matcher.group(2));
 
         Note note = new Note(pitch, octave);
-        return new Sound(note, volume, waveType, effect, instrument, percussion);
+        return new Sound(note, volume, effect, instrument, percussion);
     }
 }

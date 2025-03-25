@@ -1,6 +1,7 @@
 package model;
 
 import javax.sound.midi.*;
+import java.util.List;
 
 public class Notes {
     private Synthesizer synth;
@@ -12,46 +13,43 @@ public class Notes {
         channels = synth.getChannels();
     }
 
-    public void playSound(Sound sound) {
+    public void playTrack(Track track) {
+        track.getSounds().forEach(sound -> playSound(sound, track.getChannel()));
+    }
+
+    private void playSound(Sound sound, int channel) {
         try {
-            MidiChannel channel = channels[0];
+            int midiNote = sound.getPercussion() != -1 ?
+                    sound.getPercussion() :
+                    sound.getNote().getMidiNoteNumber();
 
-            // Seleccionar instrumento si es válido
-            if (sound.getInstrument() != -1) {
-                channel.programChange(sound.getInstrument());
-            }
+            int actualChannel = sound.getPercussion() != -1 ? 9 : channel;
+            int volume = Math.min(sound.getVolume() * 15, 127);
 
-            // Convertir la nota a MIDI
-            //int midiNote = getMidiNoteNumber(note);
-            int midiNote = sound.getNote().getMidiNoteNumber();
-            int volume = sound.getVolume() * 20;
+            MidiChannel midiChannel = channels[actualChannel];
+            configureChannel(midiChannel, sound);
 
-            // Aplicar efecto
-            aplicarEfecto(channel, sound.getEffect());
-
-            // Reproducir la nota principal
-            channel.noteOn(midiNote, volume);
+            midiChannel.noteOn(midiNote, volume);
             Thread.sleep(500);
-            channel.noteOff(midiNote);
+            midiChannel.noteOff(midiNote);
 
-            // Si hay percusión, tocarla en canal 9
-            if (sound.getPercussion() != -1) {
-                channels[9].noteOn(sound.getPercussion(), volume);
-                Thread.sleep(200);
-                channels[9].noteOff(sound.getPercussion());
-            }
         } catch (Exception e) {
-            e.printStackTrace();
+            System.err.println("Error reproduciendo sonido: " + e.getMessage());
         }
     }
 
+    private void configureChannel(MidiChannel channel, Sound sound) {
+        if (sound.getInstrument() != -1) {
+            channel.programChange(sound.getInstrument());
+        }
+        aplicarEfecto(channel, sound.getEffect());
+    }
+
     private void aplicarEfecto(MidiChannel channel, String effect) {
-        if (effect.equals("bend-down")) {
-            channel.setPitchBend(8192 - 4096); // Pequeña bajada de tono
-        } else if (effect.equals("bend-up")) {
-            channel.setPitchBend(8192 + 4096); // Pequeña subida de tono
-        } else {
-            channel.setPitchBend(8192);
+        switch (effect) {
+            case "bend-down" -> channel.setPitchBend(8192 - 4096);
+            case "bend-up" -> channel.setPitchBend(8192 + 4096);
+            default -> channel.setPitchBend(8192);
         }
     }
 
@@ -59,4 +57,3 @@ public class Notes {
         synth.close();
     }
 }
-
